@@ -1,0 +1,5 @@
+{
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}" // Example: if your main code is in a 'src' folder
+  ]
+}

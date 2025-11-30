@@ -1,10 +1,12 @@
 from datetime import datetime
 from typing import Literal
 import uuid
-from pydantic import BaseModel, Field
+from pydantic import Field
+
+from src.shared.BaseModel import CustomBaseModel
 
 
-class Message(BaseModel):
+class Message(CustomBaseModel):
     _id: uuid.UUID = Field(default_factory=uuid.uuid4)
     chat_id: uuid.UUID
     sender_id: uuid.UUID
