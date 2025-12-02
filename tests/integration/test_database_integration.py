@@ -1,3 +1,6 @@
+import sys
+
+sys.path.append("src/")
 import os
 import uuid
 from pymongo import AsyncMongoClient

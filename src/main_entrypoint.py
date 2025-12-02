@@ -1,11 +1,18 @@
+from dotenv import load_dotenv
+import sys
 from contextlib import asynccontextmanager
 from logging import info
 import os
 from fastapi import FastAPI
 from pymongo import AsyncMongoClient
-from dotenv import load_dotenv
 
-from domain.users.routes.routes import users_routes
+"""
+This very annoying error kept happening where the program
+would either work on the debugger, or in the fastapi cli execution,
+but not both. This is a way to stop that issue.
+"""
+sys.path.append("src/")
+from domain.users.routes.routes import users_routes  # noqa
 
 
 @asynccontextmanager

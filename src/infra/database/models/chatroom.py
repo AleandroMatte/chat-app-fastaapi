@@ -2,7 +2,7 @@ from datetime import date
 import uuid
 from pydantic import Field
 
-from src.shared.BaseModel import CustomBaseModel
+from shared.BaseModel import CustomBaseModel
 
 
 class Chatrooms(CustomBaseModel):
