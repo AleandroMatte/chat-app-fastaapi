@@ -1,13 +1,10 @@
-from datetime import date
-import uuid
-from pydantic import Field
-
-from shared.BaseModel import CustomBaseModel
+from datetime import date, datetime
+from bson import ObjectId
+from pydantic import BaseModel, Field
 
 
-class Chatrooms(CustomBaseModel):
-    _id: uuid.UUID = Field(default_factory=uuid.uuid4)
+class Chatrooms(BaseModel):
+    id: str = Field(default_factory=lambda: str(ObjectId()))
     name: str
-    is_group: bool
-    created_at: date
+    created_at: date = Field(default_factory=lambda: datetime.now().date)
     metadata: dict

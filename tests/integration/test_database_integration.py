@@ -1,8 +1,9 @@
 import sys
 
+from bson import ObjectId
+
 sys.path.append("src/")
 import os
-import uuid
 from pymongo import AsyncMongoClient
 from pymongo.collection import Collection
 from pymongo.asynchronous.database import AsyncDatabase
@@ -26,9 +27,9 @@ async def test_has_necessary_database():
 @pytest.mark.parametrize(
     "user",
     (
-        User(_id=uuid.uuid4(), username="Aleandro matteoni"),
-        User(_id=uuid.uuid4(), username="Yuri Marim"),
-        User(_id=uuid.uuid4(), username="Potato Bro"),
+        User(_id=str(ObjectId()), username="Aleandro matteoni"),
+        User(_id=str(ObjectId()), username="Yuri Marim"),
+        User(_id=str(ObjectId()), username="Potato Bro"),
     ),
 )
 async def test_database_accepts_writes(database_connection: AsyncDatabase, user: User):

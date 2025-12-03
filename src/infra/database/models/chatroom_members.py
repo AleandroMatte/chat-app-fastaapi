@@ -1,10 +1,8 @@
-import uuid
-from pydantic import Field
-
-from shared.BaseModel import CustomBaseModel
+from bson import ObjectId
+from pydantic import BaseModel, Field
 
 
-class ChatroomMembers(CustomBaseModel):
-    _id: uuid.UUID = Field(default_factory=uuid.uuid4)
-    chat_id: uuid.UUID
-    user_id: uuid.UUID
+class ChatroomMembers(BaseModel):
+    id: str = Field(default_factory=lambda: str(ObjectId()))
+    chat_id: str
+    user_id: str

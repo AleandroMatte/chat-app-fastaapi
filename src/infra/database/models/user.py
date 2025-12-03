@@ -1,9 +1,7 @@
-import uuid
-from pydantic import Field
-
-from shared.BaseModel import CustomBaseModel
+from pydantic import BaseModel, Field
+from bson import ObjectId
 
 
-class User(CustomBaseModel):
-    id: uuid.UUID = Field(default_factory=uuid.uuid4, alias="_id")
+class User(BaseModel):
+    id: str = Field(default_factory=lambda: str(ObjectId()))
     username: str

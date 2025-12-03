@@ -21,7 +21,7 @@ class BaseCollectionRepository(Generic[T]):
         )
 
     async def get_by_id(self, object_id: str) -> Optional[T]:
-        document = await self.collection.find_one({"_id": object_id})
+        document = await self.collection.find_one({"id": object_id})
         if not document:
             return None
         return self.model.model_validate(document)

@@ -1,15 +1,13 @@
 from datetime import datetime
 from typing import Literal
-import uuid
-from pydantic import Field
-
-from shared.BaseModel import CustomBaseModel
+from bson import ObjectId
+from pydantic import BaseModel, Field
 
 
-class Message(CustomBaseModel):
-    _id: uuid.UUID = Field(default_factory=uuid.uuid4)
-    chat_id: uuid.UUID
-    sender_id: uuid.UUID
+class Message(BaseModel):
+    id: str = Field(default_factory=lambda: str(ObjectId()))
+    chat_id: str
+    sender_id: str
     content: str
     content_type: Literal["text", "image"]
     sent_at: datetime
