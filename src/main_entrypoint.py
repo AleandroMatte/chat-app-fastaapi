@@ -3,7 +3,8 @@ import sys
 from contextlib import asynccontextmanager
 from logging import info
 import os
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.responses import JSONResponse
 from pymongo import AsyncMongoClient
 
 """
@@ -31,4 +32,11 @@ async def db_lifespan(app: FastAPI):
 
 load_dotenv()
 app: FastAPI = FastAPI(lifespan=db_lifespan)
+
+
+@app.exception_handler(HTTPException)
+async def http_exception_handler(request: Request, exc: HTTPException):
+    return JSONResponse(status_code=exc.status_code, content={"error": exc.detail})
+
+
 app.include_router(users_routes)

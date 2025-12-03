@@ -8,5 +8,6 @@ class UserRepository(BaseCollectionRepository[User]):
     def __init__(self):
         super().__init__("users")
 
-    async def find_user_by_name(self, username: str):
-        return await self.collection.find_one({"username": username})
+    async def find_user_by_name(self, username: str) -> User:
+        user = await self.collection.find_one({"username": username})
+        return User.model_validate(user)
